@@ -490,7 +490,7 @@ export class Editor extends React.Component {
         Platform.OS === "ios"
           ? evt.nativeEvent.contentSize.height
           : evt.nativeEvent.contentSize.height - androidTextHeight;
-      let editorHeight = 40;
+      let editorHeight = this.props.initialHeight || 20;
       editorHeight = editorHeight + height;
       this.setState({
         editorHeight
