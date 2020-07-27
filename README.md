@@ -5,9 +5,9 @@ Mentions TextInput for React Native. Tested on iOS and should work on Android as
 
 ## Installation
 
-```yarn add @hansanwok/react-native-mentions-editor-tag```
+```yarn add @hansanwok/react-native-mentions-editor```
 or
-```npm install @hansanwok/react-native-mentions-editor-tag```
+```npm install @hansanwok/react-native-mentions-editor```
 
 ```
 If you love this component, give a star, you will be a ray of sunshine :)

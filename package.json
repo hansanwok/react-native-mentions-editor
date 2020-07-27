@@ -1,5 +1,5 @@
 {
-  "name": "@hansanwok/react-native-mentions-editor-tag",
+  "name": "@hansanwok/react-native-mentions-editor",
   "version": "1.0.0",
   "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "description": "Mentions for React-Native. Tested on iOS. Should work on Andriod.",
