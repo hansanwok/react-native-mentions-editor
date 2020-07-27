@@ -500,7 +500,7 @@ export class Editor extends React.Component {
 
   render() {
     const { props, state } = this;
-    const { editorStyles = {} } = props;
+    const { editorStyles = {}, inputProps = {} } = props;
 
     if (!props.showEditor) return null;
 
@@ -563,7 +563,6 @@ export class Editor extends React.Component {
                 ref={input => props.onRef && props.onRef(input)}
                 style={[styles.input, editorStyles.input]}
                 multiline
-                autoFocus
                 numberOfLines={100}
                 name={"message"}
                 value={state.inputText}
@@ -575,6 +574,7 @@ export class Editor extends React.Component {
                 placeholder={state.placeholder}
                 onContentSizeChange={this.onContentSizeChange}
                 scrollEnabled={false}
+                {...inputProps}
               />
             </View>
           </ScrollView>
