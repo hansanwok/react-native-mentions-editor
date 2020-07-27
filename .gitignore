@@ -1,8 +1,9 @@
-# xcode 
+# xcode
 .DS_Store
 
 #node
 node_modules/
+.npmrc
 
 #editor config
 # .editorconfig
