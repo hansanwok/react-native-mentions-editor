@@ -1,6 +1,6 @@
 {
-  "name": "@hansanwok/react-native-mentions-editor",
-  "version": "1.0.0",
+  "name": "react-native-mentions-editor-tag",
+  "version": "1.0.1",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
