@@ -28,5 +28,10 @@ export default StyleSheet.create({
   },
   thumbnailChar: {
     fontSize: 16
+  },
+  image: {
+    width: 35,
+    height: 35,
+    borderRadius: 35/2
   }
 });
