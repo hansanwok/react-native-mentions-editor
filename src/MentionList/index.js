@@ -51,7 +51,10 @@ export class MentionList extends React.PureComponent {
         ]}
       >
         <FlatList
-          style={styles.mentionsListContainer}
+          style={[
+            styles.mentionsListContainer,
+            { height: suggestions.length? 100 : 0 }
+          ]}
           keyboardShouldPersistTaps={"always"}
           horizontal={false}
           ListEmptyComponent={

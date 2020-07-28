@@ -14,6 +14,8 @@ import EU from "./EditorUtils";
 import styles from "./EditorStyles";
 import MentionList from "../MentionList";
 
+const defaultHeight = Platform.OS === 'ios'? 28 : 35;
+
 export class Editor extends React.Component {
   static propTypes = {
     list: PropTypes.array,
@@ -59,7 +61,7 @@ export class Editor extends React.Component {
       },
       menIndex: 0,
       showMentions: false,
-      editorHeight: 72,
+      editorHeight: defaultHeight,
       scrollContentInset: { top: 0, bottom: 0, left: 0, right: 0 },
       placeholder: props.placeholder || "Type something..."
     };
@@ -68,7 +70,10 @@ export class Editor extends React.Component {
   }
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.clearInput !== prevState.clearInput) {
-      return { clearInput: nextProps.clearInput };
+      return {
+        clearInput: nextProps.clearInput,
+        editorHeight: defaultHeight,
+      };
     }
 
     if (nextProps.showMentions && !prevState.showMentions) {
@@ -481,7 +486,7 @@ export class Editor extends React.Component {
      * calculate editor height w.r.t
      * the size of text in the input.
      */
-    if (evt) {
+    if (evt && (Platform.OS === 'ios' || this.state.inputText)) {
       // const iosTextHeight = 20.5
       const androidTextHeight = 20.5;
       // const textHeight = Platform.OS === 'ios' ? iosTextHeight : androidTextHeight
@@ -490,8 +495,10 @@ export class Editor extends React.Component {
         Platform.OS === "ios"
           ? evt.nativeEvent.contentSize.height
           : evt.nativeEvent.contentSize.height - androidTextHeight;
-      let editorHeight = this.props.initialHeight || 20;
+      let editorHeight = this.props.initialHeight || defaultHeight;
+
       editorHeight = editorHeight + height;
+
       this.setState({
         editorHeight
       });
@@ -580,7 +587,7 @@ export class Editor extends React.Component {
                 value={state.inputText}
                 onBlur={props.toggleEditor}
                 onChangeText={this.onChange}
-                selectionColor={"#000"}
+                selectionColor={Platform.OS === 'ios'? '#000' : 'transparent'}
                 onSelectionChange={this.handleSelectionChange}
                 placeholder={state.placeholder}
                 placeholderTextColor="transparent"
