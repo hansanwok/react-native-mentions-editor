@@ -569,7 +569,11 @@ export class Editor extends React.Component {
               </View>
               <TextInput
                 ref={input => props.onRef && props.onRef(input)}
-                style={[styles.input, editorStyles.input]}
+                style={[
+                  styles.input,
+                  editorStyles.input,
+                  Platform.OS === 'android' && { textAlignVertical: 'top', paddingTop: 1 }
+                ]}
                 multiline
                 numberOfLines={100}
                 name={"message"}
