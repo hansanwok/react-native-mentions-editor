@@ -525,6 +525,11 @@ export class Editor extends React.Component {
       />
     )
 
+    const platformProps = {}
+    if(Platform.OS === 'ios') {
+      platformProps.selection = this.state.selection
+    }
+
     return (
       <View styles={editorStyles.mainContainer}>
         {mentionListPosition === 'top' && renderMentionPlace()}
@@ -575,8 +580,10 @@ export class Editor extends React.Component {
                 selectionColor={"#000"}
                 onSelectionChange={this.handleSelectionChange}
                 placeholder={state.placeholder}
+                placeholderTextColor="transparent"
                 onContentSizeChange={this.onContentSizeChange}
                 scrollEnabled={false}
+                {...platformProps}
                 {...inputProps}
               />
             </View>
