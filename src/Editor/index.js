@@ -503,6 +503,7 @@ export class Editor extends React.Component {
     const { editorStyles = {}, inputProps = {} } = props;
 
     if (!props.showEditor) return null;
+    const { mentionListPosition = 'top' } = props
 
     const mentionListProps = {
       list: props.list,
@@ -512,19 +513,21 @@ export class Editor extends React.Component {
       editorStyles
     };
 
+    const renderMentionPlace = () => props.renderMentionList ? (
+      props.renderMentionList(mentionListProps)
+    ) : (
+      <MentionList
+        list={props.list}
+        keyword={state.keyword}
+        isTrackingStarted={state.isTrackingStarted}
+        onSuggestionTap={this.onSuggestionTap}
+        editorStyles={editorStyles}
+      />
+    )
+
     return (
       <View styles={editorStyles.mainContainer}>
-        {props.renderMentionList ? (
-          props.renderMentionList(mentionListProps)
-        ) : (
-          <MentionList
-            list={props.list}
-            keyword={state.keyword}
-            isTrackingStarted={state.isTrackingStarted}
-            onSuggestionTap={this.onSuggestionTap}
-            editorStyles={editorStyles}
-          />
-        )}
+        {mentionListPosition === 'top' && renderMentionPlace()}
         <View style={[styles.container, editorStyles.mainContainer]}>
           <ScrollView
             ref={scroll => {
@@ -579,6 +582,7 @@ export class Editor extends React.Component {
             </View>
           </ScrollView>
         </View>
+        {mentionListPosition === 'bottom' && renderMentionPlace()}
       </View>
     );
   }
