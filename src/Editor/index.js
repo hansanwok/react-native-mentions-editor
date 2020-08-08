@@ -575,7 +575,7 @@ export class Editor extends React.Component {
                 )}
               </View>
               <TextInput
-                ref={input => props.onRef && props.onRef(input)}
+                ref={this.props.forwardedRef}
                 style={[
                   styles.input,
                   editorStyles.input,
@@ -605,4 +605,8 @@ export class Editor extends React.Component {
   }
 }
 
-export default Editor;
+function forwardRef(props, ref) {
+  return <Editor {...props} forwardedRef={ref} />;
+}
+
+export default  React.forwardRef(forwardRef)
